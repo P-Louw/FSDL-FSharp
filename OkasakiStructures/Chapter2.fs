@@ -1,4 +1,4 @@
-namespace Okasaki.C2_Persistence
+namespace Okasaki.C2Persistence
 
 /// Figure 2.1 Example of a 'Stack' signature but with list
 /// nomenclature. 
@@ -11,6 +11,7 @@ type LStack<'a> = {
 }
 /// Figure 2.2 List stack implemented using F# built-in list type
 /// instead of user defined stack signature.
+[<RequireQualifiedAccess>]
 module ListStack =
    type ListStack<'a> =
        'a list
@@ -20,13 +21,16 @@ module ListStack =
    let cons x xs:ListStack<_> = x::xs
    let head s = List.head s
    let tail s = List.tail s
-/// Figure 2.3 Custom stack with DU 'Empty' for NIL value. 
+/// Figure 2.3 Custom stack with DU 'Empty' for NIL value.
+[<RequireQualifiedAccess>]
 module CustomStack =
     type CStack<'a> =
         | Empty
         | Cons of 'a * CStack<'a>
     let empty = Empty
-    let isEmpty c = List.isEmpty c
+    let isEmpty = function
+        | Empty -> true
+        | _ -> false
     let cons x xs = Cons(x, xs)
     let head = function
         | Empty -> failwith "empty"
