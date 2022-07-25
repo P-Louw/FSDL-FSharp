@@ -4,7 +4,7 @@ namespace Okasaki.C2Persistence
 /// nomenclature. 
 type LStack<'a> = {
    empty: LStack<'a>
-   isEmpty: LStack<'a>
+   isEmpty: LStack<'a> -> bool
    cons: 'a * LStack<'a> -> LStack<'a>
    head: LStack<'a> -> 'a
    tail: LStack<'a> -> 'a
